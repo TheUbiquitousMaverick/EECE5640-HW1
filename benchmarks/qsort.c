@@ -44,7 +44,8 @@ myqsort (int start, int end)
 		myqsort (pos + 1, end);
 }
 
-
+#include <time.h>
+float       	time0,time1;
 void qsort(void)
 {
 	int i;
@@ -52,7 +53,10 @@ void qsort(void)
 	for (i = 0; i < SIZE; i++)
 		data[i] = i;
 
+	time0 = (float) clock() / CLOCKS_PER_SEC;
 	myqsort (0, SIZE - 1);
+	time1 = (float) clock() / CLOCKS_PER_SEC;
+  printf ("\n ELAPSED TIME: %f s\n", time1-time0);
 }
 
 SINGLE_BENCHMARK(qsort())

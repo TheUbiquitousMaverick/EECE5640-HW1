@@ -4,7 +4,7 @@
 #include <chrono>
 #include <iostream>
 
-#define NUMTHREADS_POW2 2   // 2^x number of threads to be used during || sort 
+#define NUMTHREADS_POW2 0   // 2^x number of threads to be used during || sort 
 #define ARRAY_SIZE 10000    // Size of random array
 
 /*
@@ -120,15 +120,17 @@ int main() {
 
 int array[ARRAY_SIZE];
 
+    /* Random number generation code from MS Copilot */
+
     // Seed the random number generator
     srand(time(0));
 
     // Populate the array with random numbers between 0 and 100
-    for (int i = 0; i < ARRAY_SIZE; ++i) {
-        array[i] = rand()%100;
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        array[i] = rand();
     }
-    int n = sizeof(array) / sizeof(array[0]);
 
+    int n = sizeof(array)/sizeof(array[0]);
     MergeSorterThreadArgs data = {array, NUMTHREADS_POW2, 0, n - 1};
     
     // Get the start time
@@ -146,11 +148,11 @@ int array[ARRAY_SIZE];
 
     // for(int i=0;i<ARRAY_SIZE; i++)
     // {
-    //     std::cout << array[i] << " ";
+    //     std::cout << array[i] << std::endl;
     // }
 
     // Output the execution time in seconds
-    std::cout << "Execution time: " << duration.count() << " seconds" << std::endl;
+    std::cout << "\nExecution time: " << duration.count() << " seconds" << std::endl;
 
     return 0;
 }

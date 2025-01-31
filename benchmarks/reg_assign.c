@@ -30,14 +30,14 @@ TYPE reg_assign1_8 (void)
   return b[0] + b[1] + b[2] + b[3] + b[4] + b[5] + b[6];
 }
 
-
+float glb;
 #include <time.h>
 float       	time0,time1;
 void reg_assign(void)
 {
 	int i = 0;
 	int res = 0;
-	int loops = WORKLOAD * 100;
+	int loops = WORKLOAD * 2500;
 	
   time0 = (float) clock() / CLOCKS_PER_SEC;
 	for (i = 0; i < loops; i++)
@@ -46,8 +46,9 @@ void reg_assign(void)
 		res += reg_assign1_8();
 	}
 	USE(res);
+  glb = res;
   time1 = (float) clock() / CLOCKS_PER_SEC;
-  printf ("\n ELAPSED TIME: %fs\n", time1-time0);
+  printf ("\n ELAPSED TIME: %f s\n", time1-time0);
 }
 
 
